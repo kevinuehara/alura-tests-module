@@ -33,12 +33,11 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
         onChange={(e) => setSearchInput(e.target.value)}
         onKeyUp={handleKeyPress}
       />
-      <button className="cursor-pointer">
+      <button className="cursor-pointer" onClick={() => onSearch(searchInput)}>
         <img
           src="public/search.svg"
           alt="search icon"
           className="h-[24px] w-[24px] ml-3"
-          onClick={() => onSearch(searchInput)}
         />
       </button>
     </div>

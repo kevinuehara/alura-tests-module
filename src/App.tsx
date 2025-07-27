@@ -13,6 +13,7 @@ function App() {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchBooks = useCallback(async (query: string) => {
+    setIsLoading(true);
     try {
       const response = await axios.get<GoogleBooksResponse>(
         "https://www.googleapis.com/books/v1/volumes",
@@ -22,11 +23,12 @@ function App() {
           },
         }
       );
-
-      setIsLoading(false);
       setBooksResults(response.data);
     } catch (error) {
       console.error("Erro ao buscar livros:", error);
+      setIsLoading(false);
+    } finally {
+      setIsLoading(false);
     }
   }, []);
 
@@ -36,7 +38,7 @@ function App() {
         <Brand className="w-full h-[96px] flex items-center justify-between">
           <img
             src="public/logo.png"
-            alt="Logo"
+            alt="Logo Buscante"
             className="w-[235px] h-[59px] ml-20"
           />
           <nav className="flex gap-3 mr-20">
@@ -56,12 +58,7 @@ function App() {
             Que livro você procura?
           </h1>
 
-          <SearchInput
-            onSearch={(value) => {
-              fetchBooks(value);
-              setIsLoading(true);
-            }}
-          />
+          <SearchInput onSearch={(value) => fetchBooks(value)} />
 
           <div className="w-full">
             <p className="text-base text-left text-[#8B8B8B] font-normal">
@@ -88,7 +85,11 @@ function App() {
       )}
 
       {isLoading && (
-        <div role="status" className="flex items-center justify-center mt-20">
+        <div
+          data-testid="loader"
+          role="status"
+          className="flex items-center justify-center mt-20"
+        >
           <svg
             aria-hidden="true"
             className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"

@@ -8,5 +8,9 @@ export const Brand = ({
   children,
   className,
 }: PropsWithChildren<BrandProps>) => {
-  return <div className={`${className} bg-[#050C42]`}>{children}</div>;
+  return (
+    <div className={`${className} bg-[#050C42]`} data-testid="brand">
+      {children}
+    </div>
+  );
 };
