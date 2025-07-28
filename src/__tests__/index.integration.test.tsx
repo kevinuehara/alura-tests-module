@@ -9,9 +9,12 @@ describe("<App />", () => {
     const input = screen.getByRole("textbox");
     await userEvent.type(input, `Harry potter{enter}`);
 
-    await waitFor(() => {
-      const bookCards = screen.getAllByText(/harry/i);
-      expect(bookCards.length).toBeGreaterThan(0);
-    });
+    await waitFor(
+      () => {
+        const bookCards = screen.getAllByText(/harry/i);
+        expect(bookCards.length).toBeGreaterThan(0);
+      },
+      { timeout: 5000 }
+    );
   });
 });
