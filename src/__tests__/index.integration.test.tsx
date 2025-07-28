@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 
@@ -9,7 +9,9 @@ describe("<App />", () => {
     const input = screen.getByRole("textbox");
     await userEvent.type(input, `Harry potter{enter}`);
 
-    const bookCards = await screen.findAllByText(/harry/i);
-    expect(bookCards.length).toBeGreaterThan(0);
+    await waitFor(() => {
+      const bookCards = screen.getAllByText(/harry/i);
+      expect(bookCards.length).toBeGreaterThan(0);
+    });
   });
 });
