@@ -90,6 +90,7 @@ export const Dialog = ({ onClose, data }: DialogProps) => {
           alt="Fechar"
           onClick={onClose}
           className="h-[15px] w-[15px] cursor-pointer"
+          data-testid="close dialog"
         />
       </div>
 
