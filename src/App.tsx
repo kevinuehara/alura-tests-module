@@ -36,7 +36,7 @@ function App() {
         <Brand className="w-full h-[96px] flex items-center justify-between">
           <img
             src="public/logo.png"
-            alt="Logo"
+            alt="Logo Buscante"
             className="w-[235px] h-[59px] ml-20"
           />
           <nav className="flex gap-3 mr-20">
