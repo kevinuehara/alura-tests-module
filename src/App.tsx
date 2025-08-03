@@ -88,7 +88,7 @@ function App() {
       )}
 
       {isLoading && (
-        <div role="status" className="flex items-center justify-center mt-20">
+        <div data-testid="loader" role="status" className="flex items-center justify-center mt-20">
           <svg
             aria-hidden="true"
             className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"

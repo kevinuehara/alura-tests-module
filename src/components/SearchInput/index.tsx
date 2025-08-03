@@ -25,6 +25,7 @@ export const SearchInput = ({ onSearch }: SearchInputProps) => {
       )}
 
       <input
+        data-testid="search-input"
         type="text"
         value={searchInput}
         className="flex-1 outline-none bg-transparent text-sm
